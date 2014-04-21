@@ -1,0 +1,2 @@
+#!python
+cubit.cmd('import acis "/home/kalin/Documents/spring2014/NE506/hw3/parta.sat" attributes_on  separate_bodies ')
