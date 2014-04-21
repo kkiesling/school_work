@@ -9,26 +9,22 @@ import matplotlib.pyplot as plt
         
 def main_program(filename):
     pi = math.pi
-    fh = open(filename)
+    data = open(filename)
     # initialize sphere and it's properties
-    rho_a = 0.02 # atomic density [atom/b-cm]
-    rho_m = 1    # mass density [g/cm3]
-
-    # store given data into rexpective dictionaries
-    num = 0
-    """pos_0 = {}
-    E_0 = {}
-    pos_c = {}
-    E_p = {}
-    pos_f = {}"""
+    R = 10		# sphere radius
+    A = 4*pi*R**2	# area
+    V = 4/3*pi*R**3	# volume
+    rho_a = 0.02        # atomic density [atom/b-cm]
+    rho_m = 1           # mass density [g/cm3]
     # initialize tally scores
+    num = 0
     surf_cur = []
     surf_flux = []
     sph_flux = []
     sph_Edep = []
     sph_pulse = []
 
-    for line in fh:
+    for line in data:
 	num = num + 1
 	data = [float(x) for x in line.split(',')]
 	pos_0 = data[0:3]
@@ -60,9 +56,6 @@ def main_program(filename):
 	    # assume all weights w_ij = 1
 	    # j = 1,2 (crossings)
 	N = 1		# particles
-	R = 10		# sphere radius
-	A = 4*pi*R**2	# area
-	V = 4/3*pi*R**3	# volume
 	# 1) particle current on surface
 	    # 1/N*sum(xi) = 1/N*sum(sum(w_ij))
 	surf_cur_val = 1/N*(1+1)
@@ -82,25 +75,85 @@ def main_program(filename):
 	# 4) particle energy deposition in sphere
 	    # 1/(NV)*sum(sum(E_ij*w_ij*T_ij))
 		# E_ij = energy of particle
-	sph_Edep_val = 1/(N*V)*(1*sb0*H_T0+1*sbf*H_Tf)
+	sph_Edep_val = rho_a/(rho_m*N*V)*(1*sb0*H_T0+1*sbf*H_Tf)
 	sph_Edep.extend([sph_Edep_val])
 
 	# 5) pulse height tally in sphere
-	    # 
+	    # energy deposited in sphere
+        sph_pulse_val = E_0 - E_p
+        sph_pulse.extend([sph_pulse_val])
 
-	print num, surf_cur[num-1], surf_flux[num-1], sph_flux[num-1], sph_Edep[num-1]
-
+    # Plot tallies and estimators
     plt.hist(surf_cur,1)
+    plt.xlabel('Surface Particle Current (particles/Nsrc)')
+    plt.title('Particle Current on Surface Estimator')
+
     fig1 = plt.figure()
+    plt.hist(surf_flux,50)
+    plt.xlabel('Surface Particle Flux (particles/cm**2/Nsrc)')
+    plt.title('Particle Flux on Surface Estimator')
 
-    plt.hist(surf_flux,20)
     fig2 = plt.figure()
+    plt.hist(sph_flux,50)
+    plt.xlabel('Volume Particle Flux (particles/cm**3/Nsrc)')
+    plt.title('Particle Flux in Sphere Estimator')
 
-    plt.hist(sph_flux,20)
     fig3 = plt.figure()
-    plt.hist(sph_Edep,20)
-#    fig4 = plt.figure()
+    plt.hist(sph_Edep,50)
+    plt.xlabel('Volume Energy Deposition (MeV/g/Nsrc)')
+    plt.title('Particle Energy Deposition in Sphere Estimator')
+
+    fig4 = plt.figure()
+    plt.hist(sph_pulse,50)
+    plt.xlabel('Pulse Height in Sphere (MeV)')
+    plt.title('Pulse Height Tally')
+
+    # find mean values and relative errors for each tally
+    # mean values
+    surf_cur_mean = np.mean(surf_cur)
+    surf_flux_mean = np.mean(surf_flux)
+    sph_flux_mean = np.mean(sph_flux)
+    sph_Edep_mean = np.mean(sph_Edep)
+    sph_pulse_mean = np.mean(sph_pulse)
+    # variance
+    surf_cur_var = np.mean(map(square, surf_cur)) - surf_cur_mean**2
+    surf_flux_var = np.mean(map(square, surf_flux)) - surf_flux_mean**2
+    sph_flux_var = np.mean(map(square, sph_flux)) - sph_flux_mean**2
+    sph_Edep_var = np.mean(map(square, sph_Edep)) - sph_Edep_mean**2
+    sph_pulse_var = np.mean(map(square, sph_pulse)) - sph_pulse_mean**2
+    # standard error
+    surf_cur_se = surf_cur_var/len(surf_cur)
+    surf_flux_se = surf_flux_var/len(surf_flux)
+    sph_flux_se = sph_flux_var/len(sph_flux)
+    sph_Edep_se = sph_Edep_var/len(sph_Edep)
+    sph_pulse_se = sph_pulse_var/len(sph_pulse)
+    # relative error
+    surf_cur_re = (surf_cur_se)**.5/surf_cur_mean
+    surf_flux_re = (surf_flux_se)**.5/surf_flux_mean 
+    sph_flux_re = (sph_flux_se)**.5/sph_flux_mean
+    sph_Edep_re = (sph_Edep_se)**.5/sph_Edep_mean
+    sph_pulse_re = (sph_pulse_se)**.5/sph_pulse_mean
+
+    # show results
+    print "Surface Current Tally:"
+    print "mean =", surf_cur_mean
+    print "relative error =", surf_cur_re
+    print "Surface Flux Tally:"
+    print "mean =", surf_flux_mean
+    print "relative error =", surf_flux_re
+    print "Volume Flux Tally:"
+    print "mean =", sph_flux_mean
+    print "relative error =", sph_flux_re
+    print "Volume Energy Deposition Tally:"
+    print "mean =", sph_Edep_mean
+    print "relative error =", sph_Edep_re
+    print "Pulse Height Tally:"
+    print "mean =", sph_pulse_mean
+    print "relative error =", sph_pulse_re
     plt.show()
+
+def square(x):
+    return x**2
 
 def calc_trajectory(pos0, posf): 
     x0 = pos0[0]
@@ -138,14 +191,5 @@ def pos_crossing(traj, pos):
     return pos_cross, sb
     
 
-
-def heating_value(E):
-    # calculates heating value based on particle energy E
-    H_T = E**2
-    return H_T
-
-
-
-
-filename = "/home/kalin/Documents/spring2014/NE506/hw5/trackData.csv"
+filename = "/home/kalin/Documents/school_work/spring2014/NE506/hw5/trackData.csv"
 data = main_program(filename)
