@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 """ NE506 - HW5 - part I
     Kalin Kiesling
 """
-
+        
 def main_program(filename):
     pi = math.pi
     fh = open(filename)
