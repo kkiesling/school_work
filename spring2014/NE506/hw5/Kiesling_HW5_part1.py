@@ -8,12 +8,14 @@ import matplotlib.pyplot as plt
 """
         
 def main_program(filename):
+    # This will calculate the tallies/estimators requested.
+    # Returns for each: histogram, mean value, relative error
     pi = math.pi
     data = open(filename)
     # initialize sphere and it's properties
     R = 10		# sphere radius
-    A = 4*pi*R**2	# area
-    V = 4/3*pi*R**3	# volume
+    A = float(4)*pi*R**2	# area
+    V = float(4)/float(3)*pi*R**3	# volume
     rho_a = 0.02        # atomic density [atom/b-cm]
     rho_m = 1           # mass density [g/cm3]
     # initialize tally scores
@@ -24,20 +26,22 @@ def main_program(filename):
     sph_Edep = []
     sph_pulse = []
 
+    # for each set of data in the csv file, calculate the tally
     for line in data:
 	num = num + 1
+        # extract the pieces of data in each line
 	data = [float(x) for x in line.split(',')]
 	pos_0 = data[0:3]
 	E_0 = data[3]
 	pos_c = data[4:7]
 	E_p = data[7]
-	pos_f = data[8:]
+	pos_f = data[8:11]
 	H_T0 = E_0**2
 	H_Tf = E_p**2
-
 	# find trajectory to collision and trajectory to final position
 	traj0 = calc_trajectory(pos_0,pos_c)
 	trajf = calc_trajectory(pos_c,pos_f)
+        # print trajf
 
 	# find sphere boundary crossing positions
 	# assume initial and final positions are outside sphere and collision is inside sphere
@@ -69,7 +73,10 @@ def main_program(filename):
 	# 3) particle flux in sphere
 	    # 1/(NV)*sum(sum(w_ij*T_ij))
 		# T_ij = path length
-	sph_flux_val = 1/(N*V)*(1*sb0+1*sbf)
+        dist_coll = ((pos_0[0]-pos_c[0])**2 + (pos_0[1]-pos_c[1])**2 + (pos_0[2]-pos_c[2])**2)**.5
+        T0 = dist_coll - sb0
+        Tf = sbf
+	sph_flux_val = float(1)/(N*V)*(1*T0+1*Tf)
 	sph_flux.extend([sph_flux_val])
 
 	# 4) particle energy deposition in sphere
@@ -109,30 +116,11 @@ def main_program(filename):
     plt.title('Pulse Height Tally')
 
     # find mean values and relative errors for each tally
-    # mean values
-    surf_cur_mean = np.mean(surf_cur)
-    surf_flux_mean = np.mean(surf_flux)
-    sph_flux_mean = np.mean(sph_flux)
-    sph_Edep_mean = np.mean(sph_Edep)
-    sph_pulse_mean = np.mean(sph_pulse)
-    # variance
-    surf_cur_var = np.mean(map(square, surf_cur)) - surf_cur_mean**2
-    surf_flux_var = np.mean(map(square, surf_flux)) - surf_flux_mean**2
-    sph_flux_var = np.mean(map(square, sph_flux)) - sph_flux_mean**2
-    sph_Edep_var = np.mean(map(square, sph_Edep)) - sph_Edep_mean**2
-    sph_pulse_var = np.mean(map(square, sph_pulse)) - sph_pulse_mean**2
-    # standard error
-    surf_cur_se = surf_cur_var/len(surf_cur)
-    surf_flux_se = surf_flux_var/len(surf_flux)
-    sph_flux_se = sph_flux_var/len(sph_flux)
-    sph_Edep_se = sph_Edep_var/len(sph_Edep)
-    sph_pulse_se = sph_pulse_var/len(sph_pulse)
-    # relative error
-    surf_cur_re = (surf_cur_se)**.5/surf_cur_mean
-    surf_flux_re = (surf_flux_se)**.5/surf_flux_mean 
-    sph_flux_re = (sph_flux_se)**.5/sph_flux_mean
-    sph_Edep_re = (sph_Edep_se)**.5/sph_Edep_mean
-    sph_pulse_re = (sph_pulse_se)**.5/sph_pulse_mean
+    [surf_cur_mean, surf_cur_re] = tally_stats(surf_cur)
+    [surf_flux_mean, surf_flux_re] = tally_stats(surf_flux)
+    [sph_flux_mean, sph_flux_re] = tally_stats(sph_flux)
+    [sph_Edep_mean, sph_Edep_re] = tally_stats(sph_Edep)
+    [sph_pulse_mean, sph_pulse_re] = tally_stats(sph_pulse)
 
     # show results
     print "Surface Current Tally:"
@@ -152,10 +140,21 @@ def main_program(filename):
     print "relative error =", sph_pulse_re
     plt.show()
 
+def tally_stats(tally_vals):
+    # calculates mean value, variance, standard error, and relative error
+    # for each array of tally_vals
+    mean = np.mean(tally_vals)
+    variance = np.mean(map(square, tally_vals)) - mean**2
+    standard_error = variance/len(tally_vals)
+    relative_error = standard_error**.5/mean
+    return mean, relative_error 
+
 def square(x):
+    # basic math squared operator to apply to arrays
     return x**2
 
 def calc_trajectory(pos0, posf): 
+    # calculates direction [u,v,w] for particle path
     x0 = pos0[0]
     y0 = pos0[1]
     z0 = pos0[2]
@@ -169,20 +168,20 @@ def calc_trajectory(pos0, posf):
     traj = [u,v,w]
     return traj
 
-
-
 def pos_crossing(traj, pos):
+    # calculates the point of crossing on the sphere
     pos_s = [0, 0, 0] # centered at origin
-    R = 10	 # radius [cm]
-
+    R = float(10)	 # radius [cm]
     # find distance to boundary
     A = traj[0]**2 + traj[1]**2 + traj[2]**2
-    B = 2*(traj[0]*(pos[0]-pos_s[0]) + traj[1]*(pos[1]-pos_s[1]) + traj[2]*(pos[2]-pos_s[2]))
+    B = float(2)*(traj[0]*(pos[0]-pos_s[0]) + traj[1]*(pos[1]-pos_s[1]) + traj[2]*(pos[2]-pos_s[2]))
     C = (pos[0]-pos_s[0])**2 + (pos[1]-pos_s[1])**2 + (pos[2]-pos_s[2])**2 - R**2
-    sb1 = (-B+(B**2-4*A*C)**(1/2))/(2*A)
-    sb2 = (-B-(B**2-4*A*C)**(1/2))/(2*A)
-    sb = min(sb1,sb2) # trajectory must cross sphere twice so take closest
-
+    sb1 = (-B+(B**2-4*A*C)**.5)/(2*A)
+    sb2 = (-B-(B**2-4*A*C)**.5)/(2*A)
+    distances = [sb1, sb2]
+    # print distances
+    # find minimum positve value
+    sb = min(x for x in distances if x > 0) 
     # calculate position of crossing
     x_cross = pos[0] + traj[0]*sb
     y_cross = pos[1] + traj[1]*sb
@@ -190,6 +189,7 @@ def pos_crossing(traj, pos):
     pos_cross = [x_cross, y_cross, z_cross]
     return pos_cross, sb
     
-
+# Execute main program
+# ! change filename to be the correct path !
 filename = "/home/kalin/Documents/school_work/spring2014/NE506/hw5/trackData.csv"
-data = main_program(filename)
+main_program(filename)
