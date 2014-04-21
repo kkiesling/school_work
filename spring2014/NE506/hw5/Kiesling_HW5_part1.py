@@ -89,22 +89,22 @@ def main_program(filename):
     plt.title('Particle Current on Surface Estimator')
 
     fig1 = plt.figure()
-    plt.hist(surf_flux,50)
+    plt.hist(surf_flux,30)
     plt.xlabel('Surface Particle Flux (particles/cm**2/Nsrc)')
     plt.title('Particle Flux on Surface Estimator')
 
     fig2 = plt.figure()
-    plt.hist(sph_flux,50)
+    plt.hist(sph_flux,30)
     plt.xlabel('Volume Particle Flux (particles/cm**3/Nsrc)')
     plt.title('Particle Flux in Sphere Estimator')
 
     fig3 = plt.figure()
-    plt.hist(sph_Edep,50)
+    plt.hist(sph_Edep,30)
     plt.xlabel('Volume Energy Deposition (MeV/g/Nsrc)')
     plt.title('Particle Energy Deposition in Sphere Estimator')
 
     fig4 = plt.figure()
-    plt.hist(sph_pulse,50)
+    plt.hist(sph_pulse,30)
     plt.xlabel('Pulse Height in Sphere (MeV)')
     plt.title('Pulse Height Tally')
 
