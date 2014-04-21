@@ -1,0 +1,337 @@
+          Thread Name & Version = MCNP5, 1.60
+                                  _                                      
+            ._ _    _  ._   ._   |_                                      
+            | | |  (_  | |  |_)   _)                                     
+                            |                                            
+  +---------------------------------------------------------------------+
+  | Copyright 2010. Los Alamos National Security, LLC.  All rights      |
+  | reserved.                                                           |
+  |   This material was produced under U.S. Government contract         |
+  | DE-AC52-06NA25396 for Los Alamos National Laboratory, which is      |
+  | operated by Los Alamos National Security, LLC, for the U.S.         |
+  | Department of Los Energy. The Government is granted for itself and  |
+  | others acting on its behalf a paid-up, nonexclusive, irrevocable    |
+  | worldwide license in this material to reproduce, prepare derivative |
+  | works, and perform publicly and display publicly. Beginning five    |
+  | (5) years after 2010, subject to additional five-year worldwide     |
+  | renewals, the Government is granted for itself and others acting on |
+  | its behalf a paid-up, nonexclusive, irrevocable worldwide license   |
+  | in this material to reproduce, prepare derivative works, distribute |
+  | copies to the public, perform publicly and display publicly, and to |
+  | permit others to do so. NEITHER THE UNITED STATES NOR THE UNITED    |
+  | STATES DEPARTMENT OF ENERGY, NOR LOS ALAMOS NATIONAL SECURITY, LLC, |
+  | NOR ANY OF THEIR EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, |
+  | OR ASSUMES ANY LEGAL LIABILITY OR RESPONSIBILITY FOR THE ACCURACY,  |
+  | COMPLETENESS, OR USEFULNESS OF ANY INFORMATION, APPARATUS, PRODUCT, |
+  | OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE |
+  | PRIVATELY OWNED RIGHTS.                                             |
+  +---------------------------------------------------------------------+
+  
+1mcnp     version 5     ld=09282010                     04/21/14 15:23:21 
+ *************************************************************************                 probid =  04/21/14 15:23:21 
+ i=fcl.i                                                                         
+
+         1-       File to explore the forced collision VR technique                               
+         2-       C cells                                                                         
+         3-       1 1 -8    -1 2 3                                                                
+         4-       2 1 -4    -4 5 (-2:-3)                                                          
+         5-       3 0      (-2:-3) #2 6                                                           
+         6-       4 0      -6                                                                     
+         7-       5 0     1                                                                       
+         8-                                                                                       
+         9-       C surfaces                                                                      
+        10-       1 rpp -100 100 -100 100 -10 10                                                  
+        11-       2 rpp -100 5 -5 5 -10 10                                                        
+        12-       3 rpp  -5  5 -100 5  -10 10                                                     
+        13-       4 1 p   1 1 0 2 2 0 2 2 1                                                       
+        14-       5 2 p   1 1 0 2 2 0 2 2 1                                                       
+        15-       6 rpp   -5 5 -100 -95 -10 10                                                    
+        16-                                                                                       
+        17-       C data                                                                          
+        18-       mode n p                                                                        
+  comment.  photonuclear physics may be needed (phys:p).
+        19-       imp:n 1 1 1 1 0                                                                 
+        20-       m1 26056 1                                                                      
+        21-       tr1 0 0.5 0                                                                     
+        22-       tr2 0 -0.5 0                                                                    
+        23-       sdef POS=-99 0 0                                                                
+        24-       f4:p 4                                                                          
+        25-       fq4 f e                                                                         
+        26-       nps 100000                                                                      
+        27-       fcl:n 0 -1 0 0 0                                                                
+        28-                                                                                       
+ 
+  comment.  photon   importances have been set equal to 1.
+
+ surface        1.2 and surface        2.2 are the same.        2.2 will be deleted.
+
+ surface        1.4 and surface        3.4 are the same.        3.4 will be deleted.
+
+ surface        1.4 and surface        6.4 are the same.        6.4 will be deleted.
+
+ surface        1.5 and surface        2.5 are the same.        2.5 will be deleted.
+
+ surface        1.5 and surface        3.5 are the same.        3.5 will be deleted.
+
+ surface        1.5 and surface        6.5 are the same.        6.5 will be deleted.
+
+ surface        1.6 and surface        2.6 are the same.        2.6 will be deleted.
+
+ surface        1.6 and surface        3.6 are the same.        3.6 will be deleted.
+
+ surface        1.6 and surface        6.6 are the same.        6.6 will be deleted.
+
+ surface        2.1 and surface        3.1 are the same.        3.1 will be deleted.
+
+ surface        2.1 and surface        6.1 are the same.        6.1 will be deleted.
+
+ surface        2.3 and surface        3.3 are the same.        3.3 will be deleted.
+
+ surface        3.2 and surface        6.2 are the same.        6.2 will be deleted.
+ 
+  comment.          13 surfaces were deleted for being the same as others.
+ 
+  warning.    1 of the materials appear at more than one density.
+1cells                                                                                                  print table 60
+
+                               atom        gram                                            neutron    photon     photon wt             
+              cell     mat    density     density     volume       mass            pieces importance importance generation             
+
+        1        1        1  8.61293E-02 8.00000E+00 7.60000E+05 6.08000E+06           0  1.0000E+00 1.0000E+00 -1.000E+00             
+        2        2        1  4.30646E-02 4.00000E+00 2.00000E+02 8.00000E+02           0  1.0000E+00 1.0000E+00 -1.000E+00             
+        3        3        0  0.00000E+00 0.00000E+00 3.88000E+04 0.00000E+00           0  1.0000E+00 1.0000E+00 -1.000E+00             
+        4        4        0  0.00000E+00 0.00000E+00 1.00000E+03 0.00000E+00           0  1.0000E+00 1.0000E+00 -1.000E+00             
+        5        5        0  0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00           0  0.0000E+00 0.0000E+00 -1.000E+00             
+
+ total                                               8.00000E+05 6.08080E+06
+1     exponential transform and forced collision parameters                                             print table 62
+
+                              neutron exp.           photon exp.       forced collisions
+              cell      dir    transform      dir    transform       neutron        photon
+
+        2        2                                                  -1.00000               
+
+    minimum source weight = 1.0000E+00    maximum source weight = 1.0000E+00
+
+ ***************************************************
+ * Random Number Generator  =                    1 *
+ * Random Number Seed       =       19073486328125 *
+ * Random Number Multiplier =       19073486328125 *
+ * Random Number Adder      =                    0 *
+ * Random Number Bits Used  =                   48 *
+ * Random Number Stride     =               152917 *
+ ***************************************************
+
+
+          1 warning message so far.
+1cross-section tables                                                                                   print table 100
+
+     table    length
+
+                        tables from file xdata/endf71x/Fe/26056.710nc                                    
+
+  26056.80c  373657  Fe56 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat2631      12/22/12
+
+                        tables from file xdata/mcplib84                                                  
+
+  26000.84p    5718  Update of MCPLIB04 Photon Compton Broadening Data For MCNP5 see LA-UR-    12-00018        01/03/12
+
+  total      379375
+
+ maximum photon energy set to  100.0 mev (maximum electron energy)
+
+                        tables from file xdata/el03                                                      
+
+  26000.03e    2345                                                                                          6/6/98    
+ 
+  warning.  material        1 has been set to a conductor.
+
+ ***********************************************************************************************************************
+
+ dump no.    1 on file runtpe     nps =           0     coll =              0     ctm =        0.00   nrn =             
+    0
+
+         2 warning messages so far.
+1problem summary                                                                                                           
+
+      run terminated when      100000  particle histories were done.
++                                                                                                    04/21/14 15:23:28 
+      File to explore the forced collision VR technique                                    probid =  04/21/14 15:23:21 
+0
+ neutron creation    tracks      weight        energy            neutron loss        tracks      weight        energy
+                                 (per source particle)                                           (per source particle)
+
+ source              100000    1.0000E+00    1.4000E+01          escape              109560    1.0455E+00    1.0469E+01
+                                                                 energy cutoff            0    0.            0.        
+                                                                 time cutoff              0    0.            0.        
+ weight window            0    0.            0.                  weight window            0    0.            0.        
+ cell importance          0    0.            0.                  cell importance          0    0.            0.        
+ weight cutoff            0    1.4642E-04    1.1533E-03          weight cutoff          181    1.4878E-04    1.0493E-03
+ e or t importance        0    0.            0.                  e or t importance        0    0.            0.        
+ dxtran                   0    0.            0.                  dxtran                   0    0.            0.        
+ forced collisions      283    0.            0.                  forced collisions        0    0.            0.        
+ exp. transform           0    0.            0.                  exp. transform           0    0.            0.        
+ upscattering             0    0.            1.6492E-12          downscattering           0    0.            2.0084E+00
+ photonuclear             0    0.            0.                  capture                  0    3.9168E-02    5.1407E-01
+ (n,xn)               18916    1.6937E-01    1.7179E-01          loss to (n,xn)        9458    8.4687E-02    1.1800E+00
+ prompt fission           0    0.            0.                  loss to fission          0    0.            0.        
+ delayed fission          0    0.            0.                                                                        
+     total           119199    1.1695E+00    1.4173E+01              total           119199    1.1695E+00    1.4173E+01
+
+   number of neutrons banked                    9741        average time of (shakes)              cutoffs
+   neutron tracks per source particle     1.1920E+00          escape            1.0690E+00          tco   1.0000E+33
+   neutron collisions per source particle 2.2275E+00          capture           1.9811E+00          eco   0.0000E+00
+   total neutron collisions                   222752          capture or escape 1.1019E+00          wc1  -5.0000E-01
+   net multiplication              1.0847E+00 0.0008          any termination   1.0419E+00          wc2  -2.5000E-01
+0
+ photon creation     tracks      weight        energy            photon loss         tracks      weight        energy
+                                 (per source particle)                                           (per source particle)
+
+ source                   0    0.            0.                  escape               27881    3.2079E-01    4.8029E-01
+                                                                 energy cutoff            0    0.            1.2649E-04
+                                                                 time cutoff              0    0.            0.        
+ weight window            0    0.            0.                  weight window            0    0.            0.        
+ cell importance          0    0.            0.                  cell importance          0    0.            0.        
+ weight cutoff            0    0.            0.                  weight cutoff            0    0.            0.        
+ e or t importance        0    0.            0.                  e or t importance        0    0.            0.        
+ dxtran                   0    0.            0.                  dxtran                   0    0.            0.        
+ forced collisions        0    0.            0.                  forced collisions        0    0.            0.        
+ exp. transform           0    0.            0.                  exp. transform           0    0.            0.        
+ from neutrons        87227    9.8457E-01    2.0062E+00          compton scatter          0    0.            1.2062E+00
+ bremsstrahlung       52090    5.9711E-01    4.9282E-02          capture             144398    1.6349E+00    1.3595E-01
+ p-annihilation       10056    1.1698E-01    5.9777E-02          pair production       5028    5.8489E-02    2.9475E-01
+ photonuclear             0    0.            0.                  photonuclear abs         0    0.            0.        
+ electron x-rays          0    0.            0.                                                                        
+ 1st fluorescence     27934    3.1554E-01    2.0292E-03                                                                
+ 2nd fluorescence         0    0.            0.                                                                        
+     total           177307    2.0142E+00    2.1173E+00              total           177307    2.0142E+00    2.1173E+00
+
+   number of photons banked                   149373        average time of (shakes)              cutoffs
+   photon tracks per source particle      1.7731E+00          escape            4.1496E-01          tco   1.0000E+33
+   photon collisions per source particle  5.0312E+00          capture           8.1507E-01          eco   1.0000E-03
+   total photon collisions                    503116          capture or escape 7.4944E-01          wc1  -5.0000E-01
+                                                              any termination   7.4558E-01          wc2  -2.5000E-01
+
+ computer time so far in this run     0.13 minutes            maximum number ever in bank        16
+ computer time in mcrun               0.12 minutes            bank overflows to backup file       0
+ source particles per minute            8.2868E+05
+ random numbers generated                  8715538            most random numbers used was        3431 in history        5270
+
+ range of sampled source weights = 1.0000E+00 to 1.0000E+00
+1neutron  activity in each cell                                                                         print table 126
+
+                       tracks     population   collisions   collisions     number        flux        average      average
+              cell    entering                               * weight     weighted     weighted   track weight   track mfp
+                                                          (per history)    energy       energy     (relative)      (cm)
+
+        1        1       50431        50725       222434    1.9917E+00   1.3784E+00   4.7129E+00   8.9432E-01   1.5050E+01
+        2        2         283          546          318    3.0005E-04   4.4358E+00   9.3812E+00   3.8901E-01   1.7731E+01
+        3        3      119797       104205            0    0.0000E+00   6.9704E+00   1.1622E+01   9.7429E-01   0.0000E+00
+        4        4           3            3            0    0.0000E+00   1.2763E-01   1.4143E-01   9.2674E-01   0.0000E+00
+
+           total        170514       155479       222752    1.9920E+00
+1photon   activity in each cell                                                                         print table 126
+
+                       tracks     population   collisions   collisions     number        flux        average      average
+              cell    entering                               * weight     weighted     weighted   track weight   track mfp
+                                                          (per history)    energy       energy     (relative)      (cm)
+
+        1        1        9562       149352       503065    5.6722E+00   1.2559E+00   1.2559E+00   1.1288E+00   1.8722E+00
+        2        2          75          107           51    5.4967E-04   1.7143E+00   1.7143E+00   1.0650E+00   4.0578E+00
+        3        3       19301        17926            0    0.0000E+00   1.4338E+00   1.4338E+00   1.1628E+00   0.0000E+00
+        4        4           0            0            0    0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00
+
+           total         28938       167385       503116    5.6728E+00
+1summary of photons produced in neutron collisions
+
+              cell      number of      weight per     energy per     avg photon      mev/gm per    weight/neut    energy/neut
+                         photons       source neut    source neut      energy       source neut     collision      collision
+
+        1        1         87198       9.84277E-01    2.00543E+00    2.03747E+00    3.29841E-07    4.94194E-01    1.00690E+00
+        2        2            29       2.89963E-04    7.96549E-04    2.74707E+00    9.95686E-07    9.66371E-01    2.65469E+00
+        3        3             0       0.00000E+00    0.00000E+00    0.00000E+00    0.00000E+00    0.00000E+00    0.00000E+00
+        4        4             0       0.00000E+00    0.00000E+00    0.00000E+00    0.00000E+00    0.00000E+00    0.00000E+00
+        5        5             0       0.00000E+00    0.00000E+00    0.00000E+00    0.00000E+00    0.00000E+00    0.00000E+00
+             total         87227       9.84566E-01    2.00623E+00    2.03768E+00
+
+
+
+  energy      number of        number       cum number      weight of       weight       cum weight
+ interval      photons        frequency    distribution      photons       frequency    distribution
+ 
+   20.000             2      2.29287E-05    2.29287E-05    2.44059E-05    2.47885E-05    2.47885E-05
+   15.000             9      1.03179E-04    1.26108E-04    1.07491E-04    1.09176E-04    1.33964E-04
+   10.000           163      1.86869E-03    1.99480E-03    1.92597E-03    1.95616E-03    2.09012E-03
+    9.000           278      3.18709E-03    5.18188E-03    3.27530E-03    3.32664E-03    5.41676E-03
+    8.000           652      7.47475E-03    1.26566E-02    7.61023E-03    7.72952E-03    1.31463E-02
+    7.000          1234      1.41470E-02    2.68036E-02    1.44995E-02    1.47268E-02    2.78731E-02
+    6.000          2130      2.44190E-02    5.12227E-02    2.50843E-02    2.54775E-02    5.33506E-02
+    5.000          3314      3.79928E-02    8.92155E-02    3.89073E-02    3.95172E-02    9.28678E-02
+    4.000          4780      5.47995E-02    1.44015E-01    5.58425E-02    5.67178E-02    1.49586E-01
+    3.000          7108      8.14885E-02    2.25504E-01    8.21858E-02    8.34741E-02    2.33060E-01
+    2.000          8509      9.75501E-02    3.23054E-01    9.68756E-02    9.83941E-02    3.31454E-01
+    1.000         18838      2.15965E-01    5.39019E-01    2.16214E-01    2.19603E-01    5.51057E-01
+    0.500         35190      4.03430E-01    9.42449E-01    3.83104E-01    3.89110E-01    9.40167E-01
+    0.100          3735      4.28193E-02    9.85268E-01    4.40089E-02    4.46987E-02    9.84866E-01
+    0.010          1254      1.43763E-02    9.99645E-01    1.45891E-02    1.48177E-02    9.99684E-01
+    0.000            31      3.55395E-04    1.00000E+00    3.11574E-04    3.16458E-04    1.00000E+00
+
+   total          87227      1.00000E+00                   9.84566E-01    1.00000E+00
+
+1tally        4        nps =      100000
+           tally type 4    track length estimate of particle flux.      units   1/cm**2   
+           tally for  photons  
+
+           volumes 
+                   cell:       4                                                                                   
+                         1.00000E+03
+ 
+        cell
+        4        0.00000E+00 0.0000
+
+ there are no nonzero tallies in the tally fluctuation chart bin for tally        4
+
+1status of the statistical checks used to form confidence intervals for the mean for each tally bin
+
+
+ tally   result of statistical checks for the tfc bin (the first check not passed is listed) and error magnitude check for all bins
+
+        4   no nonzero tallies were made in the tally fluctuation chart bin                           
+         no nonzero tallies were made in any one of the      1 tally bins
+
+
+ the 10 statistical checks are only for the tally fluctuation chart bin and do not apply to other tally bins.
+
+ warning.       1 of the     1 tally fluctuation chart bins did not pass all 10 statistical checks.
+ warning.       1 of the     1 tallies were all zeros.
+1tally fluctuation charts                              
+
+                            tally        4
+          nps      mean     error   vov  slope    fom
+         8000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        16000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        24000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        32000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        40000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        48000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        56000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        64000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        72000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        80000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        88000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+        96000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+       100000   0.0000E+00 0.0000 0.0000  0.0 0.0E+00
+
+ ***********************************************************************************************************************
+
+ dump no.    2 on file runtpe     nps =      100000     coll =         725868     ctm =        0.12   nrn =          
+ 8715538
+
+         4 warning messages so far.
+
+
+ run terminated when      100000  particle histories were done.
+
+ computer time =    0.13 minutes
+
+ mcnp     version 5     09282010                     04/21/14 15:23:28                     probid =  04/21/14 15:23:21 
