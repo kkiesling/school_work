@@ -1,0 +1,2 @@
+#!python
+cubit.cmd('import acis "/home/kalin/Documents/school_work/spring2014/NE506/hw5/out.sat" attributes_on  separate_bodies ')

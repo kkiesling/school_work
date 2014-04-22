@@ -30,6 +30,9 @@ C this problem assumes an isotropic 14 MeV neutron source
 C at the origin
 sdef
 C Assume a physical source strength of 1e12 n/s
+C *F1 
+C E1 1e-10 I44 10 n4 20
+C FQ1 E
 
 C Blank line above makes these comments
 1. Establish an energy grid for all tallies with 44 bins spaced
