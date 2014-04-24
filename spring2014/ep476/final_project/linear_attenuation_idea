@@ -1,0 +1,7 @@
+dI/dx=-I(x)*mu(I(x))*dx
+
+mu(I(x))=mu_o+mu_1*I(x)
+
+dI/dx=-I(x)*(mu_o+mu_1*I(x))*dx
+
+Solve for this: take N steps over length of slab and assume mu is constant in each section. Use beginning intensity at each step.

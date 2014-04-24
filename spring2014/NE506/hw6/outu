@@ -1,0 +1,334 @@
+          Thread Name & Version = MCNP5, 1.60
+                                  _                                      
+            ._ _    _  ._   ._   |_                                      
+            | | |  (_  | |  |_)   _)                                     
+                            |                                            
+  +---------------------------------------------------------------------+
+  | Copyright 2010. Los Alamos National Security, LLC.  All rights      |
+  | reserved.                                                           |
+  |   This material was produced under U.S. Government contract         |
+  | DE-AC52-06NA25396 for Los Alamos National Laboratory, which is      |
+  | operated by Los Alamos National Security, LLC, for the U.S.         |
+  | Department of Los Energy. The Government is granted for itself and  |
+  | others acting on its behalf a paid-up, nonexclusive, irrevocable    |
+  | worldwide license in this material to reproduce, prepare derivative |
+  | works, and perform publicly and display publicly. Beginning five    |
+  | (5) years after 2010, subject to additional five-year worldwide     |
+  | renewals, the Government is granted for itself and others acting on |
+  | its behalf a paid-up, nonexclusive, irrevocable worldwide license   |
+  | in this material to reproduce, prepare derivative works, distribute |
+  | copies to the public, perform publicly and display publicly, and to |
+  | permit others to do so. NEITHER THE UNITED STATES NOR THE UNITED    |
+  | STATES DEPARTMENT OF ENERGY, NOR LOS ALAMOS NATIONAL SECURITY, LLC, |
+  | NOR ANY OF THEIR EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, |
+  | OR ASSUMES ANY LEGAL LIABILITY OR RESPONSIBILITY FOR THE ACCURACY,  |
+  | COMPLETENESS, OR USEFULNESS OF ANY INFORMATION, APPARATUS, PRODUCT, |
+  | OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE |
+  | PRIVATELY OWNED RIGHTS.                                             |
+  +---------------------------------------------------------------------+
+  
+1mcnp     version 5     ld=09282010                     04/23/14 14:57:20 
+ *************************************************************************                 probid =  04/23/14 14:57:20 
+ i=Kiesling_hw6.i                                                                
+
+         1-       variance reduction problem                                                      
+         2-       1 1 -2.03  -1                                                                   
+         3-       2 0        -2                                                                   
+         4-       3 1 -.0203 -3                                                                   
+         5-       4 0        -4 3                                                                 
+         6-       5 0         1 2 4                                                               
+         7-                                                                                       
+         8-       1 rcc 0 0 0       0 180 0    100                                                
+         9-       2 rcc 0 180 0     0 1820 0   100                                                
+        10-       3 rcc 0 2000 0    0 10 0     100                                                
+        11-       4 rcc 0 2000 0    0 10 0     201                                                
+        12-                                                                                       
+        13-       c        the following is  pseudo-concrete                                      
+        14-       m1    1001 -.010      6012 -.001      8016 -.529                                
+        15-            13027 -.034     14000 -.337     26000 -.014                                
+        16-       sdef   pos=0 1.e-6 0 cel=1 wgt=1  erg=d1                                        
+        17-       si1    2 2.00000001 14 14.00000001                                              
+        18-       sp1   0 .5 .5 1                                                                 
+        19-       f1:n  1.2                                                                       
+        20-       f4:n  3                                                                         
+        21-       f5:n  200 2005 0 0                                                              
+        22-       EXT:n .99 0 0 0 0                                                               
+        23-       VECT Y                                                                          
+  fatal error.  illegal entry:  y
+        24-       FCL:n 0 0 .99 0 0                                                               
+        25-       nps   10000                                                                     
+        26-       imp:n 1 1 1 1 0                                                                 
+
+ surface        1.1 and surface        2.1 are the same.        2.1 will be deleted.
+
+ surface        1.1 and surface        3.1 are the same.        3.1 will be deleted.
+
+ surface        1.2 and surface        2.3 are the same.        2.3 will be deleted.
+
+ surface        2.2 and surface        3.3 are the same.        3.3 will be deleted.
+
+ surface        2.2 and surface        4.3 are the same.        4.3 will be deleted.
+
+ surface        3.2 and surface        4.2 are the same.        4.2 will be deleted.
+ 
+  comment.           6 surfaces were deleted for being the same as others.
+1source                                                                                                 print table 10
+
+ values of defaulted or explicitly defined source variables
+
+    cel        1.0000E+00
+    sur        0.0000E+00
+    tme        0.0000E+00
+    dir        isotropic 
+    pos        0.0000E+00   1.0000E-06   0.0000E+00
+    x          0.0000E+00
+    y          0.0000E+00
+    z          0.0000E+00
+    rad        0.0000E+00
+    ext        0.0000E+00
+    axs        0.0000E+00   0.0000E+00   0.0000E+00
+    vec        0.0000E+00   0.0000E+00   0.0000E+00
+    ccc        0.0000E+00
+    nrm        1.0000E+00
+    ara        0.0000E+00
+    wgt        1.0000E+00
+    eff        1.0000E-02
+    par        0.0000E+00
+    tr         0.0000E+00
+
+
+
+ probability distribution        1 for source variable erg
+ unbiased histogram distribution
+
+ source        source           cumulative          probability
+  entry         value           probability           of bin
+
+    1       2.00000E+00        0.000000E+00        0.000000E+00
+    2       2.00000E+00        2.500000E-01        2.500000E-01
+    3       1.40000E+01        5.000000E-01        2.500000E-01
+    4       1.40000E+01        1.000000E+00        5.000000E-01
+
+     the mean of source distribution        1 is  9.5000E+00
+
+
+ order of sampling source variables.
+ cel pos erg tme
+
+1tally        1                                                                                         print table 30
+           tally type 1    number of particles crossing a surface.                        
+           tally for  neutrons 
+ surfaces  1.2                                                                                                                         
+
+1tally        4                                                                                         print table 30
+           tally type 4    track length estimate of particle flux.                        
+           tally for  neutrons 
+ cells     3                                                                                                                           
+
+1tally        5                                                                                         print table 30
+           tally type 5    particle flux at a point detector.                             
+           tally for  neutrons 
+
+ point detector specifications
+    detector        x              y              z             r0
+       1        2.00000E+02    2.00500E+03    0.00000E+00    0.00000E+00
+1material composition                                                                                   print table 40
+
+ the sum of the fractions of material        1 was 9.250000E-01
+
+ not all cells containing material        1 have the same density.
+
+ material
+  number     component nuclide, atom fraction
+
+        1            1001, 1.75342E-01       6012, 1.47262E-03       8016, 5.84447E-01      13027, 2.22681E-02
+                    14000, 2.12040E-01      26000, 4.42997E-03
+
+
+
+
+
+ material
+  number     component nuclide, mass fraction
+
+        1            1001, 1.08108E-02       6012, 1.08108E-03       8016, 5.71892E-01      13027, 3.67568E-02
+                    14000, 3.64324E-01      26000, 1.51351E-02
+ 
+  warning.    1 materials had unnormalized fractions. print table 40.
+ 
+  warning.    1 of the materials appear at more than one density.
+1cell volumes and masses                                                                                print table 50
+
+              cell     atom          gram         input       calculated                            reason volume
+                      density       density       volume        volume         mass       pieces    not calculated
+
+        1        1  7.47871E-02   2.03000E+00   0.00000E+00   5.65487E+06   1.14794E+07      1                      
+        2        2  0.00000E+00   0.00000E+00   0.00000E+00   5.71770E+07   0.00000E+00      1                      
+        3        3  7.47871E-04   2.03000E-02   0.00000E+00   3.14159E+05   6.37743E+03      1                      
+        4        4  0.00000E+00   0.00000E+00   0.00000E+00   9.55076E+05   0.00000E+00      1                      
+        5        5  0.00000E+00   0.00000E+00   0.00000E+00   0.00000E+00   0.00000E+00      0      infinite        
+1surface areas                                                                                          print table 50
+
+           surface    input      calculated    reason area
+                      area          area       not calculated
+
+        2        1.1  0.00000E+00   1.26292E+06                   
+        3        1.2  0.00000E+00   3.14159E+04                   
+        4        1.3  0.00000E+00   3.14159E+04                   
+        7        2.2  0.00000E+00   1.26923E+05                   
+       11        3.2  0.00000E+00   1.26923E+05                   
+       14        4.1  0.00000E+00   1.26292E+04                   
+1cells                                                                                                  print table 60
+
+                               atom        gram                                            neutron                                     
+              cell     mat    density     density     volume       mass            pieces importance                                   
+
+        1        1        1  7.47871E-02 2.03000E+00 5.65487E+06 1.14794E+07           1  1.0000E+00                                   
+        2        2        0  0.00000E+00 0.00000E+00 5.71770E+07 0.00000E+00           1  1.0000E+00                                   
+        3        3        1  7.47871E-04 2.03000E-02 3.14159E+05 6.37743E+03           1  1.0000E+00                                   
+        4        4        0  0.00000E+00 0.00000E+00 9.55076E+05 0.00000E+00           1  1.0000E+00                                   
+        5        5        0  0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00           0  0.0000E+00                                   
+
+ total                                               6.41011E+07 1.14858E+07
+1     exponential transform and forced collision parameters                                             print table 62
+
+                              neutron exp.           photon exp.       forced collisions
+              cell      dir    transform      dir    transform       neutron        photon
+
+        1        1              0.99000                                                    
+        3        3                                                   0.99000               
+ 
+  warning.  exponential transform usually needs weight window.
+1surfaces                                                                                               print table 70
+
+           surface        trans  type   surface coefficients
+
+        1        1                rcc
+        2        1.1              cy    1.0000000E+02
+        3        1.2              py    1.8000000E+02
+        4        1.3              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   0.0000000E+00
+        5        2                rcc
+        7        2.2              py    2.0000000E+03
+        9        3                rcc
+       11        3.2              py    2.0100000E+03
+       13        4                rcc
+       14        4.1              cy    2.0100000E+02
+1  identical surfaces                                                                                   print table 70
+
+   master surface     identical surfaces
+
+         1.1                 2.1        3.1                                                                                            
+         1.2                 2.3                                                                                                       
+         2.2                 3.3        4.3                                                                                            
+         3.2                 4.2                                                                                                       
+
+
+   surface coefficients for identical surfaces not used.
+
+             surface     trans  type   surface coefficients
+
+        6        2.1              cy    1.0000000E+02
+       10        3.1              cy    1.0000000E+02
+        8        2.3              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -1.8000000E+02
+       12        3.3              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -2.0000000E+03
+       16        4.3              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -2.0000000E+03
+       15        4.2              py    2.0100000E+03
+1  cell temperatures in mev for the free-gas thermal neutron treatment.                                 print table 72
+
+   all non-zero importance cells with materials have a temperature for thermal neutrons of 2.5300E-08 mev.
+
+    minimum source weight = 1.0000E+00    maximum source weight = 1.0000E+00
+
+ ***************************************************
+ * Random Number Generator  =                    1 *
+ * Random Number Seed       =       19073486328125 *
+ * Random Number Multiplier =       19073486328125 *
+ * Random Number Adder      =                    0 *
+ * Random Number Bits Used  =                   48 *
+ * Random Number Stride     =               152917 *
+ ***************************************************
+
+
+         3 warning messages so far.
+
+          1 fatal error so far.
+1physical constants                                                                                     print table 98
+
+
+   name                    value     description
+
+   huge      1.0000000000000E+36     infinity
+    pie      3.1415926535898E+00     pi
+  euler      5.7721566490153E-01     euler constant
+ avogad      6.0220434469282E+23     avogadro number (molecules/mole)
+  aneut      1.0086649670000E+00     neutron mass (amu)
+  avgdn      5.9703109000000E-01     avogadro number/neutron mass (1.e-24*molecules/mole/amu)
+  slite      2.9979250000000E+02     speed of light (cm/shake)
+ planck      4.1357320000000E-13     planck constant (mev shake)
+  fscon      1.3703930000000E+02     inverse fine structure constant h*c/(2*pi*e**2)
+ gpt(1)      9.3958000000000E+02     neutron mass (mev)
+ gpt(3)      5.1100800000000E-01     electron mass (mev)
+
+
+ fission q-values:     nuclide    q(mev)   nuclide    q(mev)
+                         90232    171.91     91233    175.57
+                         92233    180.84     92234    179.45
+                         92235    180.88     92236    179.50
+                         92237    180.40     92238    181.31
+                         92239    180.40     92240    180.40
+                         93237    183.67     94238    186.65
+                         94239    189.44     94240    186.36
+                         94241    188.99     94242    185.98
+                         94243    187.48     95241    190.83
+                         95242    190.54     95243    190.25
+                         96242    190.49     96244    190.49
+                         other    180.00
+
+
+ the following compilation options were used:
+
+     unix
+     plot
+     mcplot
+     xlib
+     linux
+     omp
+     default datapath: /home/kalin/MCNP_install/MCNP_DATA                                              
+                       /opt/local/codes/data/nuclear/mc/type1                                          
+1cross-section tables                                                                                   print table 100
+
+     table    length
+
+                        tables from file xdata/endf71x/H/1001.710nc                                      
+
+   1001.80c    3652  H1 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)          mat 125      12/17/12
+
+                        tables from file xdata/rmccs                                                     
+
+   6012.50c   16126  njoy                                                                       (  1306)      79/07/31.
+  26000.55c   84136  njoy                                                                       ( 260)       10/21/82  
+
+                        tables from file xdata/endf71x/O/8016.710nc                                      
+
+   8016.80c  171194  O16 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)         mat 825      12/13/12
+
+                        tables from file xdata/endf71x/Al/13027.710nc                                    
+
+  13027.80c   85936  Al27 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat1325      12/22/12
+
+                        tables from file xdata/endf60                                                    
+
+  14000.60c   51392  14-si-nat from endf/b-vi                                                     mat1400      11/25/93
+
+  total      412436
+
+         3 warning messages so far.
+
+          1 fatal error so far.
+
+
+ run terminated because of fatal errors.
+
+ computer time =    0.01 minutes
+
+ mcnp     version 5     09282010                     04/23/14 14:57:21                     probid =  04/23/14 14:57:20 
